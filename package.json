@@ -1,0 +1,23 @@
+{
+  "name": "@ridhamsharma172/vectors",
+  "version": "1.0.0",
+  "description": "A simple vectors library.",
+  "main": "lib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RidhamSharma172/vectors.git"
+  },
+  "keywords": [
+    "vector",
+    "vectors"
+  ],
+  "author": "Ridham Sharma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RidhamSharma172/vectors/issues"
+  },
+  "homepage": "https://github.com/RidhamSharma172/vectors#readme"
+}
