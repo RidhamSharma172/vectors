@@ -24,7 +24,7 @@ class Velocity {
     addVelocity(x = 0, y = 0) {
         if (typeof x == "object") {
             this.x += x.x;
-            this.y += y.y;
+            this.y += x.y;
             return this;
         }
         this.x += x;
