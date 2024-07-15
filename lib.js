@@ -27,9 +27,14 @@ class Position {
         }
     }
 
-    addVelocity(velocity) {
-        this.#x += velocity.x;
-        this.#y += velocity.y;
+    add(x = 0, y = 0) {
+        if (typeof x == "object") {
+            this.#x += x.x;
+            this.#y += x.y;
+            return this;
+        }
+        this.#x += x;
+        this.#y += y;
         return this;
     }
 }
