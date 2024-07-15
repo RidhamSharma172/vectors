@@ -1,5 +1,5 @@
 # Vectors
-vectors is a simple vector library made for simplicity and basic functions related to vectors.
+vectors is a simple 2d vector library made for simplicity and basic functions related to vectors.
 
 # Installation
 **Step 1**: Open the terminal
@@ -12,7 +12,7 @@ To create a velocity vector you can use `Velocity` class.
 
 Code Example:
 ```
-const vectors = require("@ridhamsharma172/vectors"); // getting the module
+const vectors = require("@ridhamsharma172/vectors");
 
 // Creating a vector
 const positionVector = new vectors.Velocity(10, 0);
@@ -20,25 +20,36 @@ const positionVector = new vectors.Velocity(10, 0);
 
 `vectors.Velocity(x, y)` requires two arguments (If not entered then it will get a value of 0 as default) x and y which are their cartesian components of the velocity vector.
 
-### Methods of Position Class
-Position class provides methods like, `getPosition()` which returns the current position of the vector and also `addVelocity(velocityVector)` which returns the final position of the position vector after moving in the direction of the provided velocity.
+### Methods of Velocity Class
 
-Example use case:
+**`update(x, y)`**: **Used To update or change the value of vector**. It has two arguments x and y which are the cartesian component of the vector.
+
+Example:
 ```
-const vectors = require("@ridhamsharma172/vectors");
+const {Velocity} = require("@ridhamsharma172/vectors");
 
-// Just for  the sake code readability
-const Position = vectors.Position;
-const Velocity = vectors.Velocity;
+const velocityVector = new Velocity(2, 3); // A vector
+velocityVector.update(4, 5); // vector value gets changed and now it is (4, 5) and not (2, 3);
+```
 
-// Creating a particle position vector
-const particle = new Position(100, 100);
+**`add(x, y)`**: **Used To add another vector to the current one**. It has two arguments x and y which are the cartesian component of the vector which is going to be added into the current one.
 
-// Particle velocity
-const velocity = new Velocity(10, 0);
+Example:
+```
+const {Velocity} = require("@ridhamsharma172/vectors");
 
-// particle moves 10units +x axis
-particle.addVelocity(velocity);
+const velocityVector = new Velocity(2, 3); // A vector
+velocityVector.add(3, 5); // vector value gets changed and now it is (5, 8) and not (2, 3);
+```
+
+**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components)**.
+
+Example:
+```
+const {Velocity} = require("@ridhamsharma172/vectors");
+
+const velocityVector = new Velocity(2, 3); // A vector
+velocityVector.getVector(); // getting all the vector properties
 ```
 
 ## Creating Position Vectors
@@ -46,35 +57,44 @@ To create a position vector you can use `Position` class.
 
 Code Example:
 ```
-const vectors = require("@ridhamsharma172/vectors"); // getting the module
+const {Position} = require("@ridhamsharma172/vectors"); // getting the module
 
 // Creating a vector
-const positionVector = new vectors.Position(23, 32);
+const Position = new Position(23, 32);
 ```
 
-`vectors.Position(x, y)` requires two arguments (If not entered then it will get a value of 0 as default) x and y which are their cartesian coordinates.
+`Position(x, y)` requires two arguments (If not entered then it will get a value of 0 as default) x and y which are their cartesian coordinates.
 
 ### Methods of Velocity Class
-Position class provides methods like, `getPosition()` which returns the current position of the vector and also `addVelocity(velocityVector)` which returns the final position of the position vector after moving in the direction of the provided velocity.
 
-Example use case:
+**`update(x, y)`**: **Used To update or change the value of vector**. It has two arguments x and y which are the cartesian component of the vector.
+
+Example:
 ```
-const vectors = require("@ridhamsharma172/vectors");
+const {Position} = require("@ridhamsharma172/vectors");
 
-// Just for  the sake code readability
-const Velocity = vectors.Velocity;
+const vector = new Position(2, 3); // A vector
+vector.update(4, 5); // vector value gets changed and now it is (4, 5) and not (2, 3);
+```
 
-const vector1 = new Velocity(10, 0);
-const vector2 = new Velocity(23, 11);
+**`add(x, y)`**: **Used To add another vector to the current position(could be used to simulate movement, change in position etc)**. It has two arguments x and y which are the cartesian component of the vector which is going to be added into the current one.
 
-// Adding vector2 to vector1
-vector1.addVelocity(vector2);
+Example:
+```
+const {Position, Velocity} = require("@ridhamsharma172/vectors");
 
-// Or you can also add vector like this
-vector1.addVelocity(17, 89); // Where 17 is x component of the cartesian components and 89 is y
+const positionVector = new Position(2, 3); // A vector
+velocityVector.add(3, 5); // vector value gets changed and now it is (5, 8) and not (2, 3);
+```
 
-// Or you can just pass an object containing the x and y cartesian components
-vector1.addVelocity({x: 12, y: -32});
+**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components - x, y, magnitude and direction)**.
+
+Example:
+```
+const {Position} = require("@ridhamsharma172/vectors");
+
+const positionVector = new Position(2, 3); // A vector
+positionVector.getVector(); // getting all the vector properties
 ```
 
 # Normalising a vector
@@ -84,15 +104,62 @@ You have to pass the vector to get normalised and then it will return a normalis
 
 Code Example:
 ```
-const vectors = require("@ridhamsharma172/vectors");
-
-// Just for  the sake code readability
-const Velocity = vectors.Velocity;
-const normalise = vectors.normalise;
+const {normalise, Velocity} = require("@ridhamsharma172/vectors");
 
 // Assigning a vector
 const vector = new Velocity(10, 0);
 
 // Normalising the vector
-const normalisedVector = normalise(vector);
+const normalisedVector = normalise(vector.getVector().x, velocity.getVector.y);
+```
+
+
+# Getting angle between vectors
+A function `getAngleBetweenVectors(vector1, vector2)` is given to get the angle between any two vectors
+
+Code Example:
+```
+const {Velocity, getAngleBetweenVectors} = require("@ridhamsharma172/vectors");
+
+const vector = new Velocity(10, 3);
+const vector2 = new Velocity(23, 72);
+
+
+const angle = getAngleBetweenVectors(vector.getVector(), vector2.getVector());
+```
+
+# Getting polar components from the cartesian components
+
+**NOTE: When you use `getVector()` in the return object polar components are also returned (magnitude, direction) so you can get them using `getVector()` easily if they're made using the vector classes**
+
+If you want the polar components from cartesian components of vector you can use `getPolarComponents(x, y)`. It has two arguments (x, y) which are cartesian components of vectors.
+
+
+Code Example:
+```
+const {getPolarComponents, Velocity} = require("@ridhamsharma172/vectors");
+
+console.log(getPolarComponents(1, 1));
+
+// Or you can do this
+const newVector = new Velocity(1, 1);
+console.log({x: newVector.getVector().x, y: newVector.getVector().y}); // You can also do this
+```
+
+
+# Getting Cartesian components from the polar components
+
+**NOTE: When you use `getVector()` in the return object Cartesian components are also returned (x, y) so you can get them using `getVector()` easily if they're made using the vector classes**
+If you want the cartesian components from polar components of vector you can use `getCartesianComponents(magnitude, direction)`. It has two arguments (magnitude, direciton) which are polar components of vectors.
+
+
+Code Example:
+```
+const {getCartesianComponents, Velocity} = require("@ridhamsharma172/vectors");
+
+console.log(getCartesianComponents(1, 1));
+
+// Or you can do this
+const newVector = new Velocity(1, 1);
+console.log({magnitude: newVector.getVector().magnitude, direction: newVector.getVector().direction}); // You can also do this
 ```
