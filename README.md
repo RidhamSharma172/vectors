@@ -120,6 +120,28 @@ const newUnitVector = new Unit(0.5, 0.4);
 
 **NOTE: A Unit Vector only permits values ranging from -1 to 1. You can convert a vector to a unit vector by normalising it**
 
+### Methods of Unit Class
+
+**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components - x, y, magnitude and direction)**.
+
+Example:
+```
+const {Unit} = require("@ridhamsharma172/vectors");
+
+const unit = new Unit(0.5, 1); // A vector
+unit.getVector(); // getting all the vector properties
+```
+
+**`update(x, y)`**: **Used To update or change the value of vector**. It has two arguments x and y which are the cartesian component of the vector.
+
+Example:
+```
+const {Unit} = require("@ridhamsharma172/vectors");
+
+const unit = new Unit(0.2, 0.3); // A vector
+unit.update(0.4, 0.5);
+```
+
 # Normalising a vector
 A function `normalise(vector)` is given to normalise vectors.
 
