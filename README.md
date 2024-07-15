@@ -107,6 +107,19 @@ const velocity = new Velocity(5, 6);
 positionVector.add(velocity.getVector());
 ```
 
+## Creating a Unit Vector
+
+To create a unit vector you can use the `Unit(x, y)` class.
+
+Code Example:
+```
+const {Unit} = require("@ridhamsharma172/vectors");
+
+const newUnitVector = new Unit(0.5, 0.4);
+```
+
+**NOTE: A Unit Vector only permits values ranging from -1 to 1. You can convert a vector to a unit vector by normalising it**
+
 # Normalising a vector
 A function `normalise(vector)` is given to normalise vectors.
 
