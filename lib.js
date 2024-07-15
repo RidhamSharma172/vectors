@@ -7,15 +7,15 @@ class Position {
     constructor(x = 0, y = 0) {
         this.#x = x;
         this.#y = y;
-        this.#direction = normalise(x, y);
-        this.#magnitude = Math.hypot(x, y);
+        this.#direction = getPolarComponents(x, y).direction;
+        this.#magnitude = getPolarComponents(x, y).magnitude;
     }
 
     update(x = 0, y = 0) {
         this.#x = x;
         this.#y = y;
-        this.#direction = normalise(x, y);
-        this.#magnitude = Math.hypot(x, y);
+        this.#direction = getPolarComponents(x, y).direction;
+        this.#magnitude = getPolarComponents(x, y).magnitude;
     }
 
     getVector() {
@@ -48,8 +48,8 @@ class Velocity {
     constructor(x = 0, y = 0) {
         this.#x = x;
         this.#y = y;
-        this.#direction = normalise(x, y);
-        this.#magnitude = Math.hypot(x, y);
+        this.#direction = getPolarComponents(x, y).direction;
+        this.#magnitude = getPolarComponents(x, y).magnitude;
     }
 
     getVector() {
@@ -64,8 +64,8 @@ class Velocity {
     update(x = 0, y = 0) {
         this.#x = x;
         this.#y = y;
-        this.#direction = normalise(x, y);
-        this.#magnitude = Math.hypot(x, y);
+        this.#direction = getPolarComponents(x, y).direction;
+        this.#magnitude = getPolarComponents(x, y).magnitude;
     }
 
     add(x = 0, y = 0) {
@@ -77,6 +77,37 @@ class Velocity {
         this.#x += x;
         this.#y += y;
         return this;
+    }
+}
+
+class Unit {
+    #x;
+    #y;
+    #direction;
+    #magnitude;
+    constructor(x, y) {
+        if (x > 1 || x < -1 || y > 1 || y < -1) throw "Invalid Values for a unit Vector, Values must lie in between 1 and -1";
+        this.#x = x;
+        this.#y = y;
+        this.#direction = getPolarComponents(x, y).direction;
+        this.#magnitude = getPolarComponents(x, y).magnitude;
+    }
+
+    getVector() {
+        return {
+            x: this.#x,
+            y: this.#y,
+            direction: this.#direction,
+            magnitude: this.#magnitude
+        }
+    }
+
+    update(x = 0, y = 0) {
+        if (x > 1 || x < -1 || y > 1 || y < -1) throw "Invalid Values for a unit Vector, Values must lie in between 1 and -1";
+        this.#x = x;
+        this.#y = y;
+        this.#direction = getPolarComponents(x, y).direction;
+        this.#magnitude = getPolarComponents(x, y).magnitude;
     }
 }
 
@@ -110,8 +141,10 @@ function getCartesianComponents(magnitude, direction) {
 module.exports = {
     Position: Position,
     Velocity: Velocity,
+    Unit: Unit,
     normalise: normalise,
     getAngleBetweenVectors: getAngleBetweenVectors,
     getPolarComponents: getPolarComponents,
     getCartesianComponents: getCartesianComponents
 }
+
