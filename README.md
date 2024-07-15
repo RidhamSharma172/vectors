@@ -22,6 +22,16 @@ const positionVector = new vectors.Velocity(10, 0);
 
 ### Methods of Velocity Class
 
+**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components)**.
+
+Example:
+```
+const {Velocity} = require("@ridhamsharma172/vectors");
+
+const velocityVector = new Velocity(2, 3); // A vector
+velocityVector.getVector(); // getting all the vector properties
+```
+
 **`update(x, y)`**: **Used To update or change the value of vector**. It has two arguments x and y which are the cartesian component of the vector.
 
 Example:
@@ -40,16 +50,12 @@ const {Velocity} = require("@ridhamsharma172/vectors");
 
 const velocityVector = new Velocity(2, 3); // A vector
 velocityVector.add(3, 5); // vector value gets changed and now it is (5, 8) and not (2, 3);
-```
 
-**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components)**.
+// Or you can do this
 
-Example:
-```
-const {Velocity} = require("@ridhamsharma172/vectors");
+const newVelocity = new Velocity(1, 2);
+velocityVector.add(newVelocity.getVector());
 
-const velocityVector = new Velocity(2, 3); // A vector
-velocityVector.getVector(); // getting all the vector properties
 ```
 
 ## Creating Position Vectors
@@ -66,6 +72,16 @@ const Position = new Position(23, 32);
 `Position(x, y)` requires two arguments (If not entered then it will get a value of 0 as default) x and y which are their cartesian coordinates.
 
 ### Methods of Velocity Class
+
+**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components - x, y, magnitude and direction)**.
+
+Example:
+```
+const {Position} = require("@ridhamsharma172/vectors");
+
+const positionVector = new Position(2, 3); // A vector
+positionVector.getVector(); // getting all the vector properties
+```
 
 **`update(x, y)`**: **Used To update or change the value of vector**. It has two arguments x and y which are the cartesian component of the vector.
 
@@ -84,17 +100,11 @@ Example:
 const {Position, Velocity} = require("@ridhamsharma172/vectors");
 
 const positionVector = new Position(2, 3); // A vector
-velocityVector.add(3, 5); // vector value gets changed and now it is (5, 8) and not (2, 3);
-```
+positionVector.add(3, 5); // vector value gets changed and now it is (5, 8) and not (2, 3);
 
-**`getVector()`**: **Returns the properties of the vector(cartesian components and polar components - x, y, magnitude and direction)**.
-
-Example:
-```
-const {Position} = require("@ridhamsharma172/vectors");
-
-const positionVector = new Position(2, 3); // A vector
-positionVector.getVector(); // getting all the vector properties
+// Or you can do this
+const velocity = new Velocity(5, 6);
+positionVector.add(velocity.getVector());
 ```
 
 # Normalising a vector
