@@ -126,7 +126,7 @@ function getAngleBetweenVectors(vector1, vector2) {
 
 function getPolarComponents(x, y) {
     const magnitude = Math.hypot(x, y);
-    const direction = Math.atan2(x, y);
+    const direction = Math.atan2(y, x);
 
     return {magnitude: magnitude, direction: direction};
 }

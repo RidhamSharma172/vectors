@@ -1,6 +1,6 @@
 {
   "name": "@ridhamsharma172/vectors",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple vectors library.",
   "main": "lib.js",
   "scripts": {
